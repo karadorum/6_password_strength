@@ -1,30 +1,29 @@
 
 def get_password_strength(password):
     symbols = '~`!@#$%^&*()_-+={}[]:>;\',</?"/\\'
-    num = len([int(i) for i in password if i.isdigit()])
-    up = len([str(i) for i in password if i.isupper()])
-    lower = len([str(i) for i in password if i.islower()])
-    symbol = len([str(i) for i in password if i in symbols])
+    number = len([int(char) for char in password if char.isdigit()])
+    upper = len([str(char) for char in password if char.isupper()])
+    lower = len([str(char) for char in password if char.islower()])
+    symbol = len([str(char) for char in password if char in symbols])
     password_lenght = len(password)
-    num_list = [num, up, lower, symbol]
+    quantity_list = [number, upper, lower, symbol]
     return num_list
 
-def password_rating(num_list, password_lenght):
+
+def password_rating(quantity_list, password_lenght):
     rating = 0
-    for n in num_list:
-        if n == 1:
+    for quantity in num_list:
+        if quantity == 1:
             rating += 1
-        elif n >= 2:
+        elif quantity >= 2:
             rating += 2
-    
+
     if password_lenght >= 10:
         rating += 2
     return rating
-        
-    
+
 
 if __name__ == '__main__':
     password = input('type your password: ')
     rating = password_rating(get_password_strength(password), len(password))
     print('your password rating is {}'.format(rating))
-    
